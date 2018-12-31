@@ -46,7 +46,7 @@ include('session.php');
       <div class="col-sm-3 ">
         
         <h3>Manage Database</h3>
-        <p>Upload a kml file to the database using the buttons bellow. If database is full, first delete it.</p>
+        <p>Upload a kml file to the database. If database is not empty, first delete it.</p>
         <?php
         $query = "SELECT gid FROM blocks";
         $result = mysqli_query($conn, $query);
@@ -55,7 +55,7 @@ include('session.php');
         if($count == 0) {
             echo '<p style="font-size:80%; text-align:right;">Current database status: Empty</p>';
         } else {
-            echo '<p style="font-size:80%; text-align:right;">Current database status: Full</p>';
+            echo '<p style="font-size:80%; text-align:right;">Current database status: Not empty</p>';
         }
         ?>
         <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#uploadModal">Upload</button>

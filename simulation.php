@@ -55,6 +55,7 @@ include('session.php');
           <button type="submit" id="calculateDemand" class="btn btn-primary btn-block">Start Simulation</button>
           </form>
         </div>
+        
         <hr/>
         <button type="button" class="btn btn-primary btn-block" disabled>Reset Simulation</button>
         
@@ -66,7 +67,7 @@ include('session.php');
       </div>
     </div>
   </div>
-
+  
   <footer class="container-fluid">
     <!-- Footer -->
     <div class="footer-copyright text-center py-3">© Copyright 2018 |
@@ -74,7 +75,11 @@ include('session.php');
     </div>
     <!-- Footer -->
   </footer>
+  <div id="loading" class="loading">
+    <img src="images/loading.gif" /> 
+  </div>
   <script src="scripts/scripts.js"></script>
+  <script src="scripts/loader.js"></script>
   <script src="scripts/simulateMap.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 </body>

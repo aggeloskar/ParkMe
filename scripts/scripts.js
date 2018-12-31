@@ -73,23 +73,23 @@ $(document).ready(function () {
 
 $("#calculateDemand").submit(function (event) {
   var time = $("#timepicker").val();
-  alert(time);
   var values = "time=" + time;
 
   $.ajax({
-      type: "POST",
-      url: "calculateDemand.php",
-      data: values,
-      // if sent
-      success: function () {
-          //alert("success");
-      },
-      error: function () {
-          //alert("failure");
-      }
+    type: "POST",
+    url: "calculatedemand.php",
+    data: values,
+    // if sent
+    success: function () {
+      //alert("Success!");
+      location.reload(true);
+    },
+    error: function () {
+      alert("Something went wrong");
+    }
   });
   //DECOMMENT THIS:
-  //event.preventDefault();
+  event.preventDefault();
 });
 
 
