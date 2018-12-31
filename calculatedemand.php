@@ -31,7 +31,7 @@ $demandtable = array
   array(23, 0.76, 0.66, 0.23)
 );
 
-//$time = intval(date("h")); //Set time as current time
+
 $time = $_POST['time'];
 echo "Time posted is: " . $time;
 $timeExploded = explode(":",$time);
@@ -45,6 +45,10 @@ if ($minutes>30){
 }
 
 $time = intval($hour);
+if (empty($time)){
+    $time = intval(date("h")); //Set time as current time
+}
+
 echo "<br> Simulating for time: " . $time;
   
 $sql = "SELECT gid, population, curve, spots FROM blocks";

@@ -64,8 +64,7 @@ include('session.php');
         <hr />
         <h3>Manage blocks</h3>
         <p>To add information about a block, click on it on the map.</p>
-        
-        
+              
         <!-- Upload Modal -->
         <div class="modal fade" id="uploadModal" role="dialog">
           <div class="modal-dialog">

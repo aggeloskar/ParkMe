@@ -27,9 +27,13 @@
     // print the kml file for debug
     // echo $gid, $esye_code, $population, $pm->MultiGeometry->Polygon->outerBoundaryIs->LinearRing->coordinates, PHP_EOL;
     
+    //Set random values to spots and curve for simulation
+    $spots = rand(1,100);
+    $curve = rand(1,3);
+    
     // insert into database    
-    $sql = "INSERT INTO blocks (gid, esye_code, population, coordinates)
-    VALUES ('{$gid}', '{$esye_code}', '{$population}', PolygonFromText('{$coordinates}'))";
+    $sql = "INSERT INTO blocks (gid, esye_code, population, coordinates, spots, curve)
+    VALUES ('{$gid}', '{$esye_code}', '{$population}', PolygonFromText('{$coordinates}'), '{$spots}', '{$curve}')";
     // use exec() because no results are returned
     if (mysqli_query($conn, $sql)) {
       echo "New record created successfully";
