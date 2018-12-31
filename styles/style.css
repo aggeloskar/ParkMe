@@ -1,0 +1,99 @@
+ /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+ .row.content {
+   height: 600px;
+ }
+
+ /* Set gray background color and 100% height */
+ .sidenav {
+   background-color: #d5d5d5;
+   height: 100%;
+ }
+
+ a {
+   color: #d5d5d5;
+ }
+ 
+ a:hover {
+  color: #156662;
+}
+
+ /* Set grey background color, white text and some padding */
+ footer {
+   background-color: #555;
+   color: white;
+   padding: 30px;
+ }
+
+ .btn-primary,
+ .btn-primary:hover,
+ .btn-primary:active,
+ .btn-primary:visited,
+ .btn-primary:focus {
+   background-color: #156662;
+   border-color: #105d59;
+ }
+
+ /* On small screens, set height to 'auto' for sidenav and grid */
+ @media screen and (max-width: 767px) {
+   .sidenav {
+     height: auto;
+     padding: 15px;
+   }
+
+   .row.content {
+     height: auto;
+   }
+ }
+
+ .navbar-default {
+   margin-bottom: 0px;
+   background-color: #d5d5d5;
+   border-color: #d5d5d5;
+ }
+
+ .navbar-default .navbar-brand {
+   color: #156662;
+ }
+
+ .navbar-default .navbar-brand:hover,
+ .navbar-default .navbar-brand:focus {
+   color: #0c3836;
+ }
+
+ .navbar-default .navbar-text {
+   color: #156662;
+ }
+
+ .navbar-default .navbar-nav>li>a {
+   color: #156662;
+ }
+
+ .navbar-default .navbar-nav>li>a:hover,
+ .navbar-default .navbar-nav>li>a:focus {
+   color: #0c3836;
+ }
+
+ .navbar-default .navbar-nav>.active>a,
+ .navbar-default .navbar-nav>.active>a:hover,
+ .navbar-default .navbar-nav>.active>a:focus {
+   color: #ffffff;
+   background-color: #156662;
+ }
+
+ .navbar-default .navbar-nav>.open>a,
+ .navbar-default .navbar-nav>.open>a:hover,
+ .navbar-default .navbar-nav>.open>a:focus {
+   color: #d5d5d5;
+   background-color: #156662;
+ }
+
+ #html,
+ #body,
+ #map-container {
+   height: 100%;
+ }
+
+ #mapid {
+   width: 100%;
+   height: 100%;
+ }
