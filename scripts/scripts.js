@@ -119,7 +119,7 @@ $("#startSimulation").click(function () {
   alert("This will take a while");
   $.ajax({
     // URL where your PHP code is
-    url: 'newsimulation.php',
+    url: 'runSimulation.php',
     method: "post",
     // if sent
     success: function (data) {

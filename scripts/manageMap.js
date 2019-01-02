@@ -41,7 +41,7 @@ var emptyStyle = {
    "fillOpacity": 0.55
 };
 
-L.geoJSON(mapdata, {onEachFeature: onEachFeature, style: emptyStyle}).addTo(mymap);
+L.geoJSON(simpledata, {onEachFeature: onEachFeature, style: emptyStyle}).addTo(mymap);
 
 
 

@@ -19,6 +19,7 @@ include('session.php');
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
   <script type="text/javascript" src="mapdata.js"></script>
+  <script type="text/javascript" src="simpledata.js"></script>
   
 
 </head>

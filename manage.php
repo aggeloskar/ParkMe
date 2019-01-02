@@ -17,8 +17,9 @@ include('session.php');
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
-  
-  <script type="text/javascript" src="mapdata.js"></script>
+
+  <script type="text/javascript" src="simpledata.js"></script>
+    
 </head>
 
 <body>
@@ -128,8 +129,7 @@ include('session.php');
   </footer>
 
   <script src="scripts/scripts.js"></script>
-  <script src="scripts/manageMap.js"></script>
-  
+  <script src="scripts/manageMap.js"></script> 
 </body>
 
 </html>

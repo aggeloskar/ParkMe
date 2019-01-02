@@ -31,7 +31,7 @@ if ($uploadOk == 0) {
         require 'myparser.php';
         //delete uploaded file
         unlink('data.kml');
-        require('calculatedemand.php');
+        require('mysqltojson.php');
     } else {
         echo "Sorry, there was an error uploading your file.";
     }

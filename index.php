@@ -21,7 +21,7 @@ include('session.php');
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
   
-  <script type="text/javascript" src="mapdata.js"></script>
+  <script type="text/javascript" src="simpledata.js"></script>
   
 </head>
 

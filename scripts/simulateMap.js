@@ -35,7 +35,8 @@ function getColor(d) {
           d > 60 ? '#ffffbf' :
           d > 45 ? '#d9ef8b' :
           d > 35 ? '#a6d96a' :
-                   '#66bd63' ;
+          d > 0  ? '#66bd63' :
+                   '#808080';
 }
 
 function style(feature) {
@@ -53,7 +54,8 @@ var emptyStyle = {
    "fillOpacity": 0.55
 };
 
-var geoJSONlayer = L.geoJSON(mapdata0, {onEachFeature: onEachFeature, style: style}).addTo(mymap);
+var geoJSONlayer = L.geoJSON(simpledata, {onEachFeature: onEachFeature, style: style}).addTo(mymap);
+this.geoJSONlayer = L.geoJSON(mapdata11, {onEachFeature: onEachFeature, style: style}).addTo(mymap);
 
 function timeSelect(){
    var time = $("#timepicker").val();
