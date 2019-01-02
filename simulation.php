@@ -70,7 +70,7 @@ include('session.php');
         
         <br>
         
-        <button type="button" class="btn btn-primary btn-block" disabled>Reset Simulation</button>
+        <button type="button" id="resetSimulation"class="btn btn-primary btn-block">Reset Simulation</button>
         
         <br>
       </div>

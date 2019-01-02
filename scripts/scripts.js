@@ -129,3 +129,17 @@ $("#startSimulation").click(function () {
 
   });
 });
+
+$("#resetSimulation").click(function () {
+  alert("This will take a while");
+  $.ajax({
+    // URL where your PHP code is
+    url: 'resetSimulation.php',
+    method: "post",
+    // if sent
+    success: function (data) {
+      alert('Simulation reseted succesfully!'); 
+    }
+
+  });
+});

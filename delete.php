@@ -11,6 +11,7 @@ require 'connect.php';
     }
 
     unlink('mapdata.js');
+    unlink('simpledata.js');
 
     mysqli_close($conn);
     header("Location: manage.php");
