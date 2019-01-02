@@ -114,3 +114,18 @@ $(document).ready(function () {
 
   })
 });
+
+$("#startSimulation").click(function () {
+  alert("This will take a while");
+  $.ajax({
+    // URL where your PHP code is
+    url: 'newsimulation.php',
+    method: "post",
+    // if sent
+    success: function (data) {
+      alert('Simulation completed succesfully!'); 
+      location.reload(true);   
+    }
+
+  });
+});

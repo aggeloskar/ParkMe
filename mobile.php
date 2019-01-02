@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
         crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
         crossorigin=""></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
     <link rel="stylesheet" type="text/css" href="styles/mobileStyle.css">
     <script type="text/javascript" src="mapdata.js"></script>
@@ -42,13 +44,13 @@
                </div>
                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                   <div class="card-body">
-                     <form>
-                        <div class="form-group">
-                           <label for="simulationTime">Select Time</label>
-                           <input type="text" class="form-control" id="simulationTime" aria-describedby="simulationHelp">
-                           <small id="simulationHelp" class="form-text text-muted">This is help</small>
+                     <form role="form" action="calculatedemand.php" method="post" id="calculateDemand">
+                        <div class="input-group">
+                           <input id="timepicker" name="time" class="form-control timepicker">
+                           <span class="input-group-btn">
+                              <button type="submit" id="calculateDemand" class="btn btn-primary">Go!</button>
+                           </span>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
                      </form>
                   </div>
                </div>
@@ -92,6 +94,8 @@
    <div id='map'></div>
    <script src="scripts/mobileMap.js"></script>
    <script src="scripts/mobileScripts.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
 </body>
 
 </html>

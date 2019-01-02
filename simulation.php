@@ -49,14 +49,26 @@ include('session.php');
 
         <h2>Actions</h2>
         <div>
-        <form role="form" action="calculatedemand.php" method="post" id="calculateDemand">
+        <label for="time">Select Time:</label>
+        <div class="input-group">
+          <input id="timepicker" name="time" class="form-control timepicker">
+          <span class="input-group-btn">
+            <button type="button" onclick="timeSelect()" id="calculateDemand" class="btn btn-primary">Go!</button>
+          </span>
+        </div>
+        <!--<form role="form" action="calculatedemand.php" method="post" id="calculateDemand">
           Select time:
           <input size="36" id="timepicker" name="time" class="timepicker">
           <button type="submit" id="calculateDemand" class="btn btn-primary btn-block">Start Simulation</button>
-          </form>
+        </form>-->
         </div>
-        
+       
         <hr/>
+
+        <button type="button" id="startSimulation" class="btn btn-primary btn-block">Start Simulation</button>
+        
+        <br>
+        
         <button type="button" class="btn btn-primary btn-block" disabled>Reset Simulation</button>
         
         <br>
