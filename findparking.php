@@ -1,19 +1,13 @@
 <?php
-/*TODO:
-**Get radius from user with POST
-**Find all ID with centroid inside radius
-**Create #free_spots 50m around centroids
-**Call DBSCAN
-*/
 
 require 'connect.php';
 require_once('dbscan.php');
 
-$destination = $_POST["clickedLocation"]; //Coordinates from user
-$time = $_POST['time']; //Time from user
+$destination = $_POST["clickedLocation"];
+$time = $_POST['time'];
 $max_radius = $_POST['radius'];
 
-//TODO: FIRST RUN CALCULATION BEFORE CALCULATING PARKING
+//================================TODO: FIRST RUN CALCULATION BEFORE CALCULATING PARKING ====================================
 
 $destination = preg_replace("/[^0-9,.]/", "", $destination);
 $latlng = explode(",", $destination);
@@ -22,27 +16,13 @@ $lng = $latlng[1];
 
 $destination_wkt = "POINT(" . $lng . "," . $lat . ")";
 
-/*DEBUG
-echo 'Post Data: <br>';
-echo 'Destination ' . $destination;
-echo '<br>Lat: ' . $lat;
-echo '<br>Lng: ' . $lng;
-echo '<br>Time: ' . $time;
-echo '<br>Max radius:' . $max_radius;
-echo '<br>============================<br>';
-*/
-
 $sql = "SELECT gid,ST_asText(ST_Centroid(coordinates)), free_spots FROM `blocks` WHERE st_distance_sphere(ST_Centroid(coordinates), {$destination_wkt}) <= {$max_radius}";
 $result = mysqli_query($conn, $sql);
 
 $points_array = array();
-//echo 'SQL results: <br>';
 if (mysqli_num_rows($result) > 0) {
     // Manipulate data for each row
     while($row = mysqli_fetch_assoc($result)) {
-        //echo "gid: " . $row["gid"]. " - Coords: " . $row["ST_asText(ST_Centroid(coordinates))"]. " " . $row["free_spots"]. "<br>";
-        //echo 'Random coordinates around block ' . $row["gid"] . ': <br>';
-        
         $coords = preg_replace("/[^0-9,. ]/", "", $row["ST_asText(ST_Centroid(coordinates))"]);
         $latlng = explode(" ", $coords);
         $latitude = $latlng[0];
@@ -58,24 +38,16 @@ if (mysqli_num_rows($result) > 0) {
             $lng_max = $longitude + $radius / abs(cos(deg2rad($latitude)) * 69);
             $lat_min = $latitude - ($radius / 69);
             $lat_max = $latitude + ($radius / 69);
-
-            //echo 'Random point #' .$i. ': ' . $lng_min . ', ' . $lat_min . '<br>';
-            //echo 'Coords max: ' . $lng_max . ', ' . $lat_max . '<br>';
-            //END RANDOM POINT CREATOR
-            //$points_array[$row["gid"]][] = $lng_min . ", " . $lat_min; //FOR ASOC ARRAY
             $points_array[] = $lng_min . ", " . $lat_min;
-        }
-        
+        }        
     }
 } else {
     echo "0 results";
 }
 
 mysqli_close($conn);
-//echo "<br>END OF SQL ESUTLS <br> ================== <br>";
 
 $spots = count($points_array);
-//echo "<br>Spots: " . $spots ;
 
 $distance_matrix = array();
 for ($i=0; $i<=$spots; $i++){
@@ -86,9 +58,6 @@ for ($i=0; $i<=$spots; $i++){
 
 $point_ids = range(0,$spots);
 
-//echo 'Point IDs:<br />';
-//print_r($point_ids);
-// Setup DBSCAN with distance matrix and unique point IDs
 $DBSCAN = new DBSCAN($distance_matrix, $point_ids);
 $epsilon = 20;
 $minpoints = 13;
@@ -118,47 +87,30 @@ foreach ($clusters as $index => $cluster)
 		echo '</ul>';
 	}
 }
-//TODO: HANDLE MORE THAN ONE MAX CLUSTER
+//===========================TODO: HANDLE MORE THAN ONE MAX CLUSTER=========================================
 echo "<br>Biggest cluster: " . $maxIndex . " with " . $maxPoints . " points.";
 echo "<br>";
 
+$polygonarray = [];
 
 for ($i = 0; $i <$maxPoints; $i++){
     //COORDINATES OF MAX CLUSTER:
-    echo $points_array[$clusters[$maxIndex][$i]] . "<br>";
+    $polygonarray[] = explode(", ", $points_array[$clusters[$maxIndex][$i]]);
 }
-//TODO: FIND CENTER OF COORDINATES
-$centerOfCluster = "40.633928263832, 22.956431981203";
-//TODO: CREATE GEOJSON
-//TODO: APPEAR ON MAP
 
-/*
-echo "<pre>";
-print_r($clusters[$maxIndex]);
-echo "</pre>";
+$centerofpoints = GetCenterFromDegrees($polygonarray);
+$centerlat = $centerofpoints[0];
+$centerlon = $centerofpoints[1];
+echo $centerlat . $centerlon;
 
-echo "<pre>";
-print_r($points_array);
-echo "</pre>";
-
-echo "<pre>";
-print_r($distance_matrix);
-echo "</pre>";
-
-echo "<pre>";
-print_r($point_ids);
-echo "</pre>";
-*/
-
-
+geoJSON($lat, $lng, $centerlat, $centerlon);
 
 
 function findDistance($x, $y) {
     $latlonFrom = explode(",", $x);
     $latFrom = $latlonFrom[0];
     $lonFrom = $latlonFrom[1];
-    //echo $latFrom . $lonFrom;
-
+    
     $latlonTo = explode(",", $y);
     $latTo = $latlonTo[0];
     $lonTo = $latlonTo[1];
@@ -170,7 +122,80 @@ function findDistance($x, $y) {
     $miles = $dist * 60 * 1.1515;
     $meters = $miles * 1609.344;
     return $meters;
-    //echo "Distance from " . $x . " to " . $y . " is: ". $meters . " meters<br>";
+}
+
+function GetCenterFromDegrees($data)
+{
+    if (!is_array($data)) return FALSE;
+
+    $num_coords = count($data);
+
+    $X = 0.0;
+    $Y = 0.0;
+    $Z = 0.0;
+
+    foreach ($data as $coord)
+    {
+        $lat = $coord[0] * pi() / 180;
+        $lon = $coord[1] * pi() / 180;
+
+        $a = cos($lat) * cos($lon);
+        $b = cos($lat) * sin($lon);
+        $c = sin($lat);
+
+        $X += $a;
+        $Y += $b;
+        $Z += $c;
+    }
+
+    $X /= $num_coords;
+    $Y /= $num_coords;
+    $Z /= $num_coords;
+
+    $lon = atan2($Y, $X);
+    $hyp = sqrt($X * $X + $Y * $Y);
+    $lat = atan2($Z, $hyp);
+
+    return array($lat * 180 / pi(), $lon * 180 / pi());
+}
+
+function geoJSON($lat, $lng, $centerlat, $centerlon){
+    $json = 'var destination = {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [' . $lng . ', '. $lat . ']
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [' . $centerlon . ', ' . $centerlat . ']
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [' . $lng . ', ' . $lat . '],
+                [' . $centerlon . ', ' . $centerlat . ']
+                ]
+              }
+            }
+          ]
+        }';
+
+    $myfile = fopen("destination.js", "w") or die("Unable to open file!");
+    fwrite($myfile, $json);
+    fclose($myfile);
 }
 
 ?>

@@ -17,7 +17,8 @@ $("#findParking").submit(function (event) {
         }
     });
     //DECOMMENT THIS:
-    //event.preventDefault();
+    event.preventDefault();
+    location.reload(true);
 });
 
 $(document).ready(function () {

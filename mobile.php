@@ -18,6 +18,8 @@
 
     <link rel="stylesheet" type="text/css" href="styles/mobileStyle.css">
     <script type="text/javascript" src="mapdata.js"></script>
+    <script type="text/javascript" src="destination.js"></script>
+
     
 </head>
 
@@ -45,12 +47,12 @@
                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                   <div class="card-body">
                      <form role="form" action="calculatedemand.php" method="post" id="calculateDemand">
-                        <div class="input-group">
-                           <input id="timepicker" name="time" class="form-control timepicker">
-                           <span class="input-group-btn">
-                              <button type="submit" id="calculateDemand" class="btn btn-primary">Go!</button>
-                           </span>
-                        </div>
+                     <div class="input-group">
+                        <input id="timepicker" name="time" class="form-control timepicker">
+                        <span class="input-group-btn">
+                           <button type="button" onclick="timeSelect()" id="calculateDemand" class="btn btn-primary">Go!</button>
+                        </span>
+                     </div>
                      </form>
                   </div>
                </div>
