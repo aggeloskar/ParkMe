@@ -53,10 +53,10 @@ include('session.php');
         <div>
         <label for="time">Select Time:</label>
         <div class="input-group">
-          <input id="timepicker" name="time" class="form-control timepicker">
-          <span class="input-group-btn">
-            <button type="button" onclick="timeSelect()" id="calculateDemand" class="btn btn-primary">Go!</button>
-          </span>
+        <form role="form" action="runSingleSimulation.php" method="post" id="calculateDemand2">
+          <input size="36" autocomplete="off" id="timepicker2" name="time" class="timepicker">
+          <button type="submit" id="calculateDemand2" class="btn btn-primary btn-block">Start Simulation</button>
+        </form>
         </div>
         <br>
         <label for="time">Change minutes:</label>
@@ -69,15 +69,12 @@ include('session.php');
             <button type="button" onclick="timeSelect()" id="addMinute" class="btn btn-primary">+</button>
           </span>
         </div>
-        <!--<form role="form" action="calculatedemand.php" method="post" id="calculateDemand">
-          Select time:
-          <input size="36" id="timepicker" name="time" class="timepicker">
-          <button type="submit" id="calculateDemand" class="btn btn-primary btn-block">Start Simulation</button>
-        </form>-->
+        
         </div>
        
+        
+        <!--<div>
         <hr/>
-        <div>
         If a new kml file is uploaded, select "Start Simulation". This may take a while.
         </div>
         <div>
@@ -87,7 +84,7 @@ include('session.php');
         
         <button type="button" id="resetSimulation"class="btn btn-primary btn-block">Reset Simulation</button>
         </div>
-        <br>
+        <br>-->
       </div>
 
       <div id="map-container" class="col-sm-9" style="margin-left: -15px">

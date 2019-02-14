@@ -1,3 +1,4 @@
+// Delete database. OK
 $("#deleteButton").click(function () {
   $.ajax({
     // URL where your PHP code is
@@ -6,13 +7,14 @@ $("#deleteButton").click(function () {
     // if sent
     success: function (data) {
       alert('Database deleted succesfully!');
+      resetmap();
       $('#deleteModal').modal('hide');
     }
 
   });
 });
 
-
+// Timepicker. OK
 $(document).ready(function () {
   $('.timepicker').timepicker({
     timeFormat: 'HH:mm ',
@@ -22,31 +24,12 @@ $(document).ready(function () {
     defaultTime: '11',
     startTime: '10:00',
     dynamic: false,
-    dropdown: true,
-    scrollbar: true
+    dropdown: false,
+    scrollbar: false
   });
 });
 
-/*
-$("#calculateDemand").click(function () {
-
-  $.ajax({
-    // URL where your PHP code is
-    url: 'calculatedemand.php',
-    method: "post",
-    // if sent
-    success: function (data) {
-      //TODO: Dynamically refresh map
-
-      alert('Success!');
-      console.log('Calculated demand');
-    }
-
-  });
-});
-*/
-
-
+// Add block info and print success. OK
 $(document).ready(function () {
   $("#mapid").click(function () {
     $("#addBlock").submit(function (event) {
@@ -59,9 +42,6 @@ $(document).ready(function () {
         data: form.serialize(),
         // if sent
         success: function (data) {
-          //TODO: Dynamically refresh map
-          //TODO: Fix messages appearing multiple times
-          //alert("Block added");
           $("#blockAdded").html("Success");
         }
       });
@@ -70,81 +50,52 @@ $(document).ready(function () {
   });
 });
 
-$("#calculateDemand").submit(function (event) {
-  var time = $("#timepicker").val();
+//calculateDemand OK.
+$("#calculateDemand2").submit(function (event) {
+  var time = $("#timepicker2").val();
   var values = "time=" + time;
 
   $.ajax({
     type: "POST",
-    url: "calculatedemand.php",
+    url: "runSingleSimulation.php",
     data: values,
     // if sent
     success: function () {
-      //alert("Success!");
-      location.reload(true);
+      draw();
     },
     error: function () {
       alert("Something went wrong");
     }
   });
-  //DECOMMENT THIS:
   event.preventDefault();
 });
 
 
 //TODO: FIX THIS UPLOAD FORM
-$(document).ready(function () {
-  $("#uploadForm").submit(function (event) {
+$("#uploadForm").submit(function (event) {
 
-    $.ajax({
-      type: "POST",
-      url: "upload.php",
-      data: new FormData(this),
-      // if sent
-      success: function () {
-        alert("success");
-      },
-      error: function () {
-        alert("failure");
-      }
-    });
-    //DECOMMENT THIS:
-    event.preventDefault();
-
-  })
-});
-
-$("#startSimulation").click(function () {
-  alert("This will take a while");
   $.ajax({
-    // URL where your PHP code is
-    url: 'runSimulation.php',
-    method: "post",
+    type: "POST",
+    url: "upload.php",
+    data: new FormData(this),
     // if sent
-    success: function (data) {
-      alert('Simulation completed succesfully!'); 
-      location.reload(true);   
+    success: function () {
+      alert("success");
+    },
+    error: function () {
+      alert("failure");
     }
-
   });
+  //DECOMMENT THIS:
+  event.preventDefault();
+
 });
 
-$("#resetSimulation").click(function () {
-  $.ajax({
-    // URL where your PHP code is
-    url: 'resetSimulation.php',
-    method: "post",
-    // if sent
-    success: function (data) {
-      alert('Simulation reseted succesfully!'); 
-    }
 
-  });
-});
-
-$("#addMinute").click(function(){
+// Add minutes to timepicker. OK
+$("#addMinute").click(function () {
   var mins = $("#manipulateMinutes").val();
-  var timeString = $("#timepicker").val();
+  var timeString = $("#timepicker2").val();
   var timeSplit = timeString.split(':');
   var hours = parseInt(timeSplit[0]);
   var minutes = parseInt(timeSplit[1]) + parseInt(mins);
@@ -153,17 +104,17 @@ $("#addMinute").click(function(){
     hours -= 24;
   }
   minutes = minutes % 60;
-  
-  var time = ('0' + hours).slice(-2) + ':' + ('0' +minutes).slice(-2);
-  $("#timepicker").val(time);
-  
+
+  var time = ('0' + hours).slice(-2) + ':' + ('0' + minutes).slice(-2);
+  $("#timepicker2").val(time);
+
 
 });
 
-/*================================TODO: FIX THIS -- REMOVEs MINUTES FROM FORM=============================*/
-$("#removeMinute").click(function(){
+//Not so OK.
+$("#removeMinute").click(function () {
   var mins = $("#manipulateMinutes").val();
-  var timeString = $("#timepicker").val();
+  var timeString = $("#timepicker2").val();
   var timeSplit = timeString.split(':');
   var hours = parseInt(timeSplit[0]);
   var minutes = parseInt(timeSplit[1]) - parseInt(mins);
@@ -172,7 +123,10 @@ $("#removeMinute").click(function(){
     hours -= 24;
   }
   minutes = minutes % 60;
-  
-  var time = ('0' + hours).slice(-2) + ':' + ('0' +minutes).slice(-2);
-  $("#timepicker").val(time);
+
+  var time = ('0' + hours).slice(-2) + ':' + ('0' + minutes).slice(-2);
+  $("#timepicker2").val(time);
 });
+
+//TODO
+//ONCLICK Start Simulation -> start simulation on current time

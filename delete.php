@@ -10,9 +10,9 @@ require 'connect.php';
         echo "Error deleting record: " . mysqli_error($conn);
     }
 
-    unlink('mapdata.js');
+    unlink('mapdataonetime.js');
     unlink('simpledata.js');
-
+    
     mysqli_close($conn);
     header("Location: manage.php");
     die();

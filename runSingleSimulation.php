@@ -1,8 +1,7 @@
 <?php
+require 'connect.php';
 
-function calculatetest($time){
-require("connect.php");
-
+echo("RUN SINGLE SIM");
 // Demand Table
 //array(time, center, home, constant)
 $demandtable = array
@@ -76,46 +75,45 @@ if (mysqli_num_rows($result) > 0) {
         $sql2 = "UPDATE blocks SET free_spots={$free_spots}, demand = {$demand} WHERE gid = {$gid}";
         // use exec() because no results are returned
         if (mysqli_query($conn, $sql2)) {
-            echo "ok";
+            //echo "ok\n";
         } else {
             echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
         }
     
     }
-    //require 'mysqltojson.php';
+    echo "calling mysqltojson...\n";
     mysqltojson($time, $conn);
+    echo "mysqltojson done";
 } else {
     echo "0 results";
-}
 }
 
 function mysqltojson($time, $conn){
     $sql = "SELECT gid, population, demand, ST_AsGeoJSON(coordinates) FROM blocks";
-$result = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, $sql);
 
-//Initialize GeoJson
-$geojson = '{"type": "FeatureCollection","features": [' . $geojson;
+    //Initialize GeoJson
+    $geojson = '{"type": "FeatureCollection","features": [' . $geojson;
 
-if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_assoc($result)) {
-      //echo "Population: " . $row["population"]. " - gid: " . $row["gid"]. " " . $row["ST_AsGeoJSON(coordinates)"]. "<br>";
-      $geojson = $geojson. '{"type": "Feature", "id": "' . $row["gid"] . '", "properties": {"demand": ' . $row["demand"] . ', "population": ' . $row["population"] . '}, "geometry": ';
-      $geojson = $geojson . $row["ST_AsGeoJSON(coordinates)"] . '},';
-      
+    if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+        //echo "demand: " . $row["demand"]. " - gid: " . $row["gid"]. " " . $row["ST_AsGeoJSON(coordinates)"]. "<br>";
+        $geojson = $geojson. '{"type": "Feature", "id": "' . $row["gid"] . '", "properties": {"demand": ' . $row["demand"] . ', "population": ' . $row["population"] . '}, "geometry": ';
+        $geojson = $geojson . $row["ST_AsGeoJSON(coordinates)"] . '},';
+        
+        }
+    } else {
+        echo "0 results";
     }
-} else {
-    echo "0 results";
-}
 
-$geojson = rtrim($geojson,',');
-$geojson = $geojson . "]}" . PHP_EOL;
-//echo $geojson . "<br>";
-$myfile = fopen("mapdataonetime.js", "a") or die("Unable to open file!");
-fwrite($myfile, $geojson);
-fclose($myfile);
+    $geojson = rtrim($geojson,',');
+    $geojson = $geojson . "]}" . PHP_EOL;
+    echo $geojson . "<br>";
+    $myfile = fopen("mapdataonetime.js", "a") or die("Unable to open file!");
+    fwrite($myfile, $geojson);
+    fclose($myfile);
 }
-
 mysqli_close($conn);
 ?>
   

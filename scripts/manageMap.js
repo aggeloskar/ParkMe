@@ -41,8 +41,11 @@ var emptyStyle = {
    "fillOpacity": 0.55
 };
 
-L.geoJSON(simpledata, {onEachFeature: onEachFeature, style: emptyStyle}).addTo(mymap);
+var graymap = L.geoJSON(simpledata, {onEachFeature: onEachFeature, style: emptyStyle}).addTo(mymap);
 
+function resetmap(){
+   mymap.removeLayer(graymap);
+}
 
 
 

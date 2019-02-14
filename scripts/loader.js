@@ -9,5 +9,5 @@ $(document)
   .ajaxStop(function () {
     //got response so hide the loading image
     $loading.hide();
-    //$('#mapid').show();
+    $('#mapid').show();
   });
