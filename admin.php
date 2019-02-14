@@ -12,25 +12,29 @@ include('session.php');
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
   
-  <script type="text/javascript" src="mapdata.js"></script>
-
+  <script type="text/javascript" src="simpledata.js"></script>
+  
 </head>
 
 <body>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#"><img style="margin-top:-14px" src="images/logo.png" /></a>
+        <a class="navbar-brand" href="admin.php"><img style="margin-top:-14px" src="images/logo.png" /></a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a href="admin.php">Home</a></li>
-        <li><a href="manage.php">Manage Database</a></li>
-        <li class="active"><a href="blocks.php">Manage blocks</a></li>
+        <li class="active"><a href="admin.php">Home</a></li>
+        <li><a href="manage.php">Manage City</a></li>
+        <!--<li><a href="blocks.php">Manage blocks</a></li>-->
         <li><a href="simulation.php">Start simulation</a></li>
       </ul>
 
@@ -43,13 +47,14 @@ include('session.php');
   </nav>
   <div class="container-fluid">
     <div class="row content" style="background-color: #d5d5d5">
-      <div class="col-sm-3 ">
-      <h2>Actions</h2>
-      <p>To add information about a block, click on it, or select from the buttons below.</p>
-          <button type="button" class="btn btn-primary btn-block">Add block</button>
-          <button type="button" class="btn btn-primary btn-block">Delete block</button>
-        
-        <br>
+      <div class="col-sm-3">
+        <h2>Welcome!</h2>
+        <p>ParkMe is a parking simulation website for your Smart City!</p>
+        <p>Choose your action from the top menu.</p>
+        <hr/>
+        <h4>Help</h4>
+        <p> To manage database and add block information, choose "Manage City". </p>
+        <p> Choose "Start Simulation", to view parking availability. </p>
       </div>
 
       <div id="map-container" class="col-sm-9" style="margin-left: -15px">
@@ -61,12 +66,14 @@ include('session.php');
   <footer class="container-fluid">
     <!-- Footer -->
     <div class="footer-copyright text-center py-3">© Copyright 2018 |
-      <a href="mobile.html"> Go to mobile site</a>
+      <a href="index.php"> Go to mobile site</a>
     </div>
     <!-- Footer -->
   </footer>
+  
   <script src="scripts/scripts.js"></script>
-  <script src="scripts/emptyStyle.js"></script>
+  <script src="scripts/indexMap.js"></script>
+
 </body>
 
 </html>

@@ -19,7 +19,7 @@
 		
       if($count == 1) {
 		$_SESSION['login_user'] = $myusername;        
-        header("location: index.php");
+        header("location: admin.php");
       }else {
 		$error = "Your Login Name or Password is invalid";
 		echo "$erorr";

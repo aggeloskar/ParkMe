@@ -66,11 +66,25 @@ function style(feature) {
 var emptyStyle = {
     "color": "#808080",
     "weight": 1,
-    "fillOpacity": 0.55
+    "fillOpacity": 0.55 
 };
+var date = new Date();
+var time = date.getHours();
 
-var geoJSONlayer = L.geoJSON(mapdata11, {onEachFeature: onEachFeature, style: style}).addTo(map);
-this.geoJSONlayer = L.geoJSON(destination, {onEachFeature: onEachFeature, style: style}).addTo(map);
+//var geoJSONlayer = L.geoJSON(mapdata11, {onEachFeature: onEachFeature, style: style}).addTo(map);
+//this.geoJSONlayer = L.geoJSON(destination, {onEachFeature: onEachFeature, style: style}).addTo(map);
+var geoJsonlayer = new L.GeoJSON.AJAX("mapdataonetime.js",{onEachFeature: onEachFeature, style: style});
+geoJsonlayer.addTo(map);
+
+var parking;
+function draw(){
+   if(map.hasLayer(parking)){
+      map.removeLayer(parking);
+   }
+   parking = new L.GeoJSON.AJAX("destination.js");    
+   parking.addTo(map);
+}
+
 
 function timeSelect(){
     var time = $("#timepicker").val();

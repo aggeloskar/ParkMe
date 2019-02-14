@@ -160,7 +160,7 @@ function GetCenterFromDegrees($data)
 }
 
 function geoJSON($lat, $lng, $centerlat, $centerlon){
-    $json = 'var destination = {
+    $json = '{
         "type": "FeatureCollection",
         "features": [
           {

@@ -6,7 +6,6 @@ $("#deleteButton").click(function () {
     // if sent
     success: function (data) {
       alert('Database deleted succesfully!');
-      console.log('delete ok');
       $('#deleteModal').modal('hide');
     }
 
@@ -131,7 +130,6 @@ $("#startSimulation").click(function () {
 });
 
 $("#resetSimulation").click(function () {
-  alert("This will take a while");
   $.ajax({
     // URL where your PHP code is
     url: 'resetSimulation.php',
@@ -142,4 +140,39 @@ $("#resetSimulation").click(function () {
     }
 
   });
+});
+
+$("#addMinute").click(function(){
+  var mins = $("#manipulateMinutes").val();
+  var timeString = $("#timepicker").val();
+  var timeSplit = timeString.split(':');
+  var hours = parseInt(timeSplit[0]);
+  var minutes = parseInt(timeSplit[1]) + parseInt(mins);
+  hours += Math.floor(minutes / 60);
+  while (hours >= 24) {
+    hours -= 24;
+  }
+  minutes = minutes % 60;
+  
+  var time = ('0' + hours).slice(-2) + ':' + ('0' +minutes).slice(-2);
+  $("#timepicker").val(time);
+  
+
+});
+
+/*================================TODO: FIX THIS -- REMOVEs MINUTES FROM FORM=============================*/
+$("#removeMinute").click(function(){
+  var mins = $("#manipulateMinutes").val();
+  var timeString = $("#timepicker").val();
+  var timeSplit = timeString.split(':');
+  var hours = parseInt(timeSplit[0]);
+  var minutes = parseInt(timeSplit[1]) - parseInt(mins);
+  hours += Math.floor(minutes / 60);
+  while (hours <= 0) {
+    hours -= 24;
+  }
+  minutes = minutes % 60;
+  
+  var time = ('0' + hours).slice(-2) + ':' + ('0' +minutes).slice(-2);
+  $("#timepicker").val(time);
 });

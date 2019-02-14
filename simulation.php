@@ -17,8 +17,8 @@ include('session.php');
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-
-  <script type="text/javascript" src="mapdata.js"></script>
+  <script src="scripts/leaflet.ajax.min.js"></script>
+  <!--<script type="text/javascript" src="mapdata.js"></script>-->
   <script type="text/javascript" src="simpledata.js"></script>
   
 
@@ -28,10 +28,10 @@ include('session.php');
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.php"><img style="margin-top:-14px" src="images/logo.png" /></a>
+        <a class="navbar-brand" href="admin.php"><img style="margin-top:-14px" src="images/logo.png" /></a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a href="index.php">Home</a></li>
+        <li><a href="admin.php">Home</a></li>
         <li><a href="manage.php">Manage City</a></li>
         <!--<li><a href="blocks.php">Manage blocks</a></li>-->
         <li class="active"><a href="simulation.php">Start simulation</a></li>
@@ -49,12 +49,24 @@ include('session.php');
       <div class="col-sm-3 ">
 
         <h2>Actions</h2>
+        <br>
         <div>
         <label for="time">Select Time:</label>
         <div class="input-group">
           <input id="timepicker" name="time" class="form-control timepicker">
           <span class="input-group-btn">
             <button type="button" onclick="timeSelect()" id="calculateDemand" class="btn btn-primary">Go!</button>
+          </span>
+        </div>
+        <br>
+        <label for="time">Change minutes:</label>
+        <div class="input-group">
+        <span class="input-group-btn">
+            <button type="button" onclick="timeSelect()" id="removeMinute" class="btn btn-primary">-</button>
+          </span>
+          <input id="manipulateMinutes" name="minutes" class="form-control" value="30">
+          <span class="input-group-btn">
+            <button type="button" onclick="timeSelect()" id="addMinute" class="btn btn-primary">+</button>
           </span>
         </div>
         <!--<form role="form" action="calculatedemand.php" method="post" id="calculateDemand">
@@ -65,13 +77,16 @@ include('session.php');
         </div>
        
         <hr/>
-
+        <div>
+        If a new kml file is uploaded, select "Start Simulation". This may take a while.
+        </div>
+        <div>
         <button type="button" id="startSimulation" class="btn btn-primary btn-block">Start Simulation</button>
         
         <br>
         
         <button type="button" id="resetSimulation"class="btn btn-primary btn-block">Reset Simulation</button>
-        
+        </div>
         <br>
       </div>
 
@@ -84,7 +99,7 @@ include('session.php');
   <footer class="container-fluid">
     <!-- Footer -->
     <div class="footer-copyright text-center py-3">© Copyright 2018 |
-      <a href="mobile.php"> Go to mobile site</a>
+      <a href="index.php"> Go to mobile site</a>
     </div>
     <!-- Footer -->
   </footer>

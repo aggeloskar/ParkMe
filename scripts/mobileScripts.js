@@ -10,7 +10,7 @@ $("#findParking").submit(function (event) {
         data: values,
         // if sent
         success: function () {
-            alert("success");
+            draw();
         },
         error: function () {
             alert("failure");
@@ -18,7 +18,6 @@ $("#findParking").submit(function (event) {
     });
     //DECOMMENT THIS:
     event.preventDefault();
-    location.reload(true);
 });
 
 $(document).ready(function () {

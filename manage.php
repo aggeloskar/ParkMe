@@ -26,10 +26,10 @@ include('session.php');
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.php"><img style="margin-top:-14px" src="images/logo.png" /></a>
+        <a class="navbar-brand" href="admin.php"><img style="margin-top:-14px" src="images/logo.png" /></a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a href="index.php">Home</a></li>
+        <li><a href="admin.php">Home</a></li>
         <li class="active"><a href="manage.php">Manage City</a></li>
         <!--<li><a href="blocks.php">Manage blocks</a></li>-->
         <li><a href="simulation.php">Start simulation</a></li>
@@ -123,7 +123,7 @@ include('session.php');
   <footer class="container-fluid">
     <!-- Footer -->
     <div class="footer-copyright text-center py-3">© Copyright 2018 |
-      <a href="mobile.php"> Go to mobile site</a>
+      <a href="index.php"> Go to mobile site</a>
     </div>
     <!-- Footer -->
   </footer>

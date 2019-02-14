@@ -55,7 +55,24 @@ var emptyStyle = {
 };
 
 var geoJSONlayer = L.geoJSON(simpledata, {onEachFeature: onEachFeature, style: style}).addTo(mymap);
-this.geoJSONlayer = L.geoJSON(mapdata11, {onEachFeature: onEachFeature, style: style}).addTo(mymap);
+//this.geoJSONlayer = L.geoJSON(mapdata11, {onEachFeature: onEachFeature, style: style}).addTo(mymap);
+
+var parking;
+if(mymap.hasLayer(parking)){
+   mymap.removeLayer(parking);
+}
+parking = new L.GeoJSON.AJAX("mapdataonetime.js",{onEachFeature: onEachFeature, style: style});    
+parking.addTo(mymap);
+
+
+function draw(){
+   if(map.hasLayer(parking)){
+      map.removeLayer(parking);
+   }
+   parking = new L.GeoJSON.AJAX("mapdataonetime.js");    
+   parking.addTo(map);
+}
+
 
 function timeSelect(){
    var time = $("#timepicker").val();
