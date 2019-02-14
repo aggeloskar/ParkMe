@@ -20,9 +20,8 @@
     <!--<script type="text/javascript" src="mapdata.js"></script>-->
     <script type="text/javascript" src="destination.js"></script>
     <script src="scripts/leaflet.ajax.min.js"></script>
-
-
-    
+ 
+  
 </head>
 
 <body>
@@ -48,7 +47,7 @@
                </div>
                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                   <div class="card-body">
-                     <form role="form" action="calculatedemand.php" method="post" id="calculateDemand">
+                     <form role="form" action="runSingleSimulation.php" method="post" id="calculateDemand">
                      <div class="input-group">
                         <input id="timepicker" name="time" class="form-control timepicker">
                         <span class="input-group-btn">
