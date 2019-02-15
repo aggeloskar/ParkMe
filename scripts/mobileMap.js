@@ -23,12 +23,45 @@ function onLocationError(e) {
    console.log("Location Error");
 }
 
+var newMarker;
+var radiusInput = 50;
+
+$( "#radius" )
+  .keyup(function() {
+    radiusInput = $( this ).val();
+    
+  })
+
+
 map.on('click', function (e) {
    var clickedLocation = e.latlng;
    document.getElementById("clickedLocation").value = clickedLocation;
-
-
+   if (typeof (newMarker) === 'undefined') {
+      newMarker = new L.marker(e.latlng, {
+         draggable: false,
+         //icon: greenMarker
+      });
+      newMarker.addTo(map);
+      newRadius = new L.circle(e.latlng, {
+         radius: radiusInput
+      });
+      newRadius.addTo(map);
+   } else {
+      map.removeLayer(newMarker);
+      newMarker = new L.marker(e.latlng, {
+         draggable: false,
+         radius: radiusInput
+         //icon: greenMarker
+      });
+      newMarker.addTo(map);
+      map.removeLayer(newRadius);
+      newRadius = new L.circle(e.latlng, {
+         radius: radiusInput
+      });
+      newRadius.addTo(map);
+   }
 });
+
 
 var time = new Date().toLocaleTimeString(); //get current time
 document.getElementById("time").value = time;
@@ -89,7 +122,7 @@ function draw() {
    parking.addTo(map);
 }
 
-function drawMap(){
+function drawMap() {
    map.removeLayer(geoJsonlayer);
    geoJsonlayer = new L.GeoJSON.AJAX("mapdataonetime.js", {
       onEachFeature: onEachFeature,
@@ -109,20 +142,26 @@ function timeSelect() {
 
    time = hour;
    var values = "time=" + time;
-  
-    $.ajax({
+
+   $.ajax({
       type: "POST",
       url: "runSingleSimulation.php",
       data: values,
       // if sent
       success: function () {
-        drawMap();
+         drawMap();
       },
       error: function () {
-        alert("Something went wrong");
+         alert("Something went wrong");
       }
-    });
-    event.preventDefault();
+   });
+   event.preventDefault();
 
 
 }
+
+var greenMarker = L.icon({
+   iconUrl: 'images/locationmarker2.png',
+   iconSize:     [38, 38], // size of the icon
+   iconAnchor:   [20, 25], // point of the icon which will correspond to marker's location
+});

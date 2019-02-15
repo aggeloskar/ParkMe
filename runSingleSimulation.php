@@ -33,6 +33,7 @@ $demandtable = array
 );
 
 unlink('mapdataonetime.js');
+unlink('destination.js');
 
 $time = $_POST['time'];
 echo "Time posted is: " . $time;

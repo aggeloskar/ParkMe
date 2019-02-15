@@ -10,13 +10,13 @@ $("#findParking").submit(function (event) {
     data: values,
     // if sent
     success: function () {
+      drawMap();
       draw();
     },
     error: function () {
-      alert("failure");
+      alert("Something went wrong! Please try again!");
     }
   });
-  //DECOMMENT THIS:
   event.preventDefault();
 });
 

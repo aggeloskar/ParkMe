@@ -10,6 +10,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
         crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
@@ -77,12 +79,12 @@
                         <div class="form-group row">
                            <div class="col-xs-6">
                            <label for="time">Select Time</label>
-                           <input type="text" name="time" class="form-control" id="time">
+                           <input type="text" name="time" class="form-control timepicker" id="time">
                         </div>
                         
                         <div class="col-xs-6">
                            <label for="radius">Select Radius</label>
-                           <input type="text" class="form-control" name="radius" id="radius" aria-describedby="radiusHelp">
+                           <input type="text" class="form-control" name="radius" id="radius" value="50" pattern="([1-9]|[1-8][0-9]|9[0-9]|[1-4][0-9]{2}|500)" title="Distance in meters (1-500)" aria-describedby="radiusHelp">
                            <small id="radiusHelp" class="form-text text-muted">Select radius</small>
                         </div>
                         </div>

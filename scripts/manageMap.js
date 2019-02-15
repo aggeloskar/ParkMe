@@ -13,7 +13,7 @@ var popup = L.popup();
 
 
 function onEachFeature(feature, layer) {
-   var popupForm = 'GID: ' + feature.id + '<br>Population: ' + feature.properties.population + '<form id="addBlock" action="addBlock.php" method="post">Parking spots:<br><input type="text" name="spots" size="5"/><br>Curve:<br><select name = "curve"><option value="1">City</option><option value="2">Notcity</option><option value="3">Stable</option></select><input type="hidden" name="gid" value="' + feature.id + '"><br><input type="submit" value="Submit"/></form><div id="blockAdded"></div>';
+   var popupForm = 'GID: ' + feature.id + '<br>Population: ' + feature.properties.population + '<form id="addBlock" action="addBlock.php" method="post">Parking spots:<br><input type="text" name="spots" size="5" pattern="([1-9][0-9]{0,2}|1000)" title="Number 1-1000"/><br>Curve:<br><select name = "curve"><option value="1">Center</option><option value="2">Residential</option><option value="3">Stable</option></select><input type="hidden" name="gid" value="' + feature.id + '"><br><input type="submit" value="Submit"/></form><div id="blockAdded"></div>';
 
    layer.bindPopup(popupForm);
 }
