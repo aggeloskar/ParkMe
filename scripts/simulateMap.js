@@ -73,16 +73,4 @@ function draw(){
 }
 
 
-function timeSelect(){
-   var time = $("#timepicker").val();
-   var hourmin = time.split(":");
-   var hour = parseInt(hourmin[0],10);
-   var min = parseInt(hourmin [1],10);
-   if (min>30){
-      hour++;
-   }
-   console.log("Timepicker time is " + hour);
-   
-}
-
 

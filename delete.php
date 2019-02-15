@@ -12,6 +12,7 @@ require 'connect.php';
 
     unlink('mapdataonetime.js');
     unlink('simpledata.js');
+    unlink('destination.js');
     
     mysqli_close($conn);
     header("Location: manage.php");

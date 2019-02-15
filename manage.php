@@ -129,7 +129,9 @@ include('session.php');
   </footer>
 
   <script src="scripts/scripts.js"></script>
-  <script src="scripts/manageMap.js"></script> 
+  <script src="scripts/manageMap.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
 </body>
 
 </html>

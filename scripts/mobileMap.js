@@ -64,7 +64,6 @@ map.on('click', function (e) {
 
 
 var time = new Date().toLocaleTimeString(); //get current time
-document.getElementById("time").value = time;
 
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);

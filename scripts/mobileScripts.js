@@ -20,13 +20,14 @@ $("#findParking").submit(function (event) {
   event.preventDefault();
 });
 
+var defaultTime = new Date().toLocaleTimeString(); 
 $(document).ready(function () {
   $('.timepicker').timepicker({
     timeFormat: 'HH:mm ',
     interval: 60,
     minTime: '00:00',
     maxTime: '23.00 pm',
-    defaultTime: '11',
+    defaultTime: defaultTime,
     startTime: '10:00',
     dynamic: false,
     dropdown: false,

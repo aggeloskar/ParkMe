@@ -73,6 +73,8 @@ include('session.php');
   
   <script src="scripts/scripts.js"></script>
   <script src="scripts/indexMap.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
 
 </body>
 

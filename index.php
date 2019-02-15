@@ -1,3 +1,16 @@
+<?php
+require 'connect.php';
+$query = "SELECT gid FROM blocks";
+$result = mysqli_query($conn, $query);
+$count = mysqli_num_rows($result);
+ 
+if($count == 0) {
+   header("Location: offline.html");
+   die();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,7 +92,7 @@
                         <div class="form-group row">
                            <div class="col-xs-6">
                            <label for="time">Select Time</label>
-                           <input type="text" name="time" class="form-control timepicker" id="time">
+                           <input type="text" name="time" class="form-control timepicker" id="time" autocomplete="off">
                         </div>
                         
                         <div class="col-xs-6">
@@ -96,11 +109,14 @@
          </div>
       </div>
    </nav>
-   <div id='map'></div>
+   <div id='map'><div id="loading" class="loading">
+    <img src="images/loading.gif" /> 
+  </div></div>
+   
    <script src="scripts/mobileMap.js"></script>
    <script src="scripts/mobileScripts.js"></script>
    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-
+   <script src="scripts/mobileloader.js"></script>
 </body>
 
 </html>

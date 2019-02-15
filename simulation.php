@@ -62,29 +62,14 @@ include('session.php');
         <label for="time">Change minutes:</label>
         <div class="input-group">
         <span class="input-group-btn">
-            <button type="button" onclick="timeSelect()" id="removeMinute" class="btn btn-primary">-</button>
+            <button type="button" id="removeMinute" class="btn btn-primary">-</button>
           </span>
           <input id="manipulateMinutes" name="minutes" class="form-control" value="30" pattern="[1-5]?[0-9]" title="Number 1-59">
           <span class="input-group-btn">
-            <button type="button" onclick="timeSelect()" id="addMinute" class="btn btn-primary">+</button>
+            <button type="button" id="addMinute" class="btn btn-primary">+</button>
           </span>
         </div>
-        
         </div>
-       
-        
-        <!--<div>
-        <hr/>
-        If a new kml file is uploaded, select "Start Simulation". This may take a while.
-        </div>
-        <div>
-        <button type="button" id="startSimulation" class="btn btn-primary btn-block">Start Simulation</button>
-        
-        <br>
-        
-        <button type="button" id="resetSimulation"class="btn btn-primary btn-block">Reset Simulation</button>
-        </div>
-        <br>-->
       </div>
 
       <div id="map-container" class="col-sm-9" style="margin-left: -15px">
