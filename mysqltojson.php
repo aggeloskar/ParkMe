@@ -21,7 +21,7 @@ if (mysqli_num_rows($result) > 0) {
 
 $geojson = rtrim($geojson,',');
 $geojson = $geojson . "]}";
-echo $geojson . "<br>";
+//echo $geojson . "<br>";
 $myfile = fopen("simpledata.js", "w") or die("Unable to open file!");
 fwrite($myfile, $geojson);
 fclose($myfile);

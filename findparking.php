@@ -7,7 +7,7 @@ $destination = $_POST["clickedLocation"];
 $time = $_POST['time'];
 $max_radius = $_POST['radius'];
 
-//=======================runSingleSimulation.ph ========================
+//=======================runSingleSimulation.php ========================
 $demandtable = array
 (
   array(0, 0.75, 0.69, 0.18),
@@ -39,13 +39,9 @@ $demandtable = array
 unlink('mapdataonetime.js');
 unlink('destination.js');
 
-//$time = $_POST['time'];
-echo "Time posted is: " . $time;
 $timeExploded = explode(":",$time);
 $hour = $timeExploded[0];
 $minutes = $timeExploded[1];
-
-echo "<br>Time exploded is: " . $hour . " : " . $minutes;
 
 if ($minutes>30){
     $hour++;
@@ -55,9 +51,6 @@ $time = intval($hour);
 if (empty($time)){
     $time = intval(date("h")); //Set time as current time
 }
-echo $time;
-
-echo "<br> Simulating for time: " . $time;
 
 $sql = "SELECT gid, population, curve, spots FROM blocks";
 $result = mysqli_query($conn, $sql);
@@ -93,7 +86,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "0 results";
 }
 
-//=======================END OF runSingleSimulation.php================================================
+//=======================END OF runSingleSimulation.php=======================================
 
 
 $destination = preg_replace("/[^0-9,.]/", "", $destination);
@@ -174,9 +167,8 @@ foreach ($clusters as $index => $cluster)
 		echo '</ul>';
 	}
 }
-//===========================TODO: HANDLE MORE THAN ONE MAX CLUSTER=========================================
-echo "<br>Biggest cluster: " . $maxIndex . " with " . $maxPoints . " points.";
-echo "<br>";
+
+//echo "<br>Biggest cluster: " . $maxIndex . " with " . $maxPoints . " points.";
 
 $polygonarray = [];
 
@@ -188,7 +180,6 @@ for ($i = 0; $i <$maxPoints; $i++){
 $centerofpoints = GetCenterFromDegrees($polygonarray);
 $centerlat = $centerofpoints[0];
 $centerlon = $centerofpoints[1];
-echo $centerlat . $centerlon;
 
 geoJSON($lat, $lng, $centerlat, $centerlon);
 
@@ -285,7 +276,7 @@ function geoJSON($lat, $lng, $centerlat, $centerlon){
     fclose($myfile);
 }
 
-//======================Function apo runSingleSimulation.php
+//================ Function apo runSingleSimulation.php
 function mysqltojson($time, $conn){
   $sql = "SELECT gid, population, demand, ST_AsGeoJSON(coordinates) FROM blocks";
   $result = mysqli_query($conn, $sql);

@@ -42,13 +42,3 @@ var emptyStyle = {
 };
 
 var graymap = L.geoJSON(simpledata, {onEachFeature: onEachFeature, style: emptyStyle}).addTo(mymap);
-
-function resetmap(){
-   mymap.removeLayer(graymap);
-   mymap.removeLayer(geoJSONlayer);
-   document.location.reload(true);
-}
-
-
-
-

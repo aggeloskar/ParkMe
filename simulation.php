@@ -7,7 +7,7 @@ include('session.php');
 <html lang="en">
 
 <head>
-  <title>ParkMe | Administrator</title>
+  <title>ParkMe | Simulation</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -18,10 +18,7 @@ include('session.php');
   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
   <script src="scripts/leaflet.ajax.min.js"></script>
-  <!--<script type="text/javascript" src="mapdata.js"></script>-->
   <script type="text/javascript" src="simpledata.js"></script>
-  
-
 </head>
 
 <body>
@@ -33,7 +30,6 @@ include('session.php');
       <ul class="nav navbar-nav">
         <li><a href="admin.php">Home</a></li>
         <li><a href="manage.php">Manage City</a></li>
-        <!--<li><a href="blocks.php">Manage blocks</a></li>-->
         <li class="active"><a href="simulation.php">Start simulation</a></li>
       </ul>
 
@@ -44,19 +40,19 @@ include('session.php');
       <p class="navbar-text navbar-right">Logged in as:</p>
     </div>
   </nav>
+
   <div class="container-fluid">
     <div class="row content" style="background-color: #d5d5d5">
       <div class="col-sm-3 ">
-
         <h2>Actions</h2>
         <br>
         <div>
-        <label for="time">Select Time:</label>
+          <label for="time">Select Time:</label>
         <div class="input-group">
-        <form role="form" action="runSingleSimulation.php" method="post" id="calculateDemand2">
-          <input size="36" autocomplete="off" id="timepicker2" name="time" class="timepicker">
-          <button type="submit" id="calculateDemand2" class="btn btn-primary btn-block">Start Simulation</button>
-        </form>
+          <form role="form" action="runSingleSimulation.php" method="post" id="calculateDemand2">
+           <input size="36" autocomplete="off" id="timepicker2" name="time" class="timepicker">
+            <button type="submit" id="calculateDemand2" class="btn btn-primary btn-block">Start Simulation</button>
+          </form>
         </div>
         <br>
         <label for="time">Change minutes:</label>
@@ -79,11 +75,9 @@ include('session.php');
   </div>
   
   <footer class="container-fluid">
-    <!-- Footer -->
     <div class="footer-copyright text-center py-3">© Copyright 2018 |
       <a href="index.php"> Go to mobile site</a>
     </div>
-    <!-- Footer -->
   </footer>
   <div id="loading" class="loading">
     <img src="images/loading.gif" /> 

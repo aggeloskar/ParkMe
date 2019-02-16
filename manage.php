@@ -8,7 +8,7 @@ include('session.php');
 <html lang="en">
 
 <head>
-  <title>ParkMe | Administrator</title>
+  <title>ParkMe | Manage City</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -31,7 +31,6 @@ include('session.php');
       <ul class="nav navbar-nav">
         <li><a href="admin.php">Home</a></li>
         <li class="active"><a href="manage.php">Manage City</a></li>
-        <!--<li><a href="blocks.php">Manage blocks</a></li>-->
         <li><a href="simulation.php">Start simulation</a></li>
       </ul>
 
@@ -121,11 +120,9 @@ include('session.php');
   </div>
 
   <footer class="container-fluid">
-    <!-- Footer -->
     <div class="footer-copyright text-center py-3">© Copyright 2018 |
       <a href="index.php"> Go to mobile site</a>
     </div>
-    <!-- Footer -->
   </footer>
 
   <script src="scripts/scripts.js"></script>

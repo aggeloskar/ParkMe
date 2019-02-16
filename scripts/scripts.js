@@ -7,15 +7,16 @@ $("#deleteButton").click(function () {
     // if sent
     success: function (data) {
       alert('Database deleted succesfully!');
-      resetmap();
       $('#deleteModal').modal('hide');
+      document.location.reload(true);
+      mymap.removeLayer(graymap);
     }
 
   });
 });
 
 // Timepicker
-var defaultTime = new Date().toLocaleTimeString(); 
+var defaultTime = new Date().toLocaleTimeString();
 $(document).ready(function () {
   $('.timepicker').timepicker({
     timeFormat: 'HH:mm ',
@@ -73,22 +74,23 @@ $("#calculateDemand2").submit(function (event) {
 
 
 //Upload form AJAX
-$("form#uploadForm").submit(function (event) {
+$("form#uploadForm").submit(function (e) {
+  e.preventDefault();
+  var formData = new FormData(this);
 
   $.ajax({
-    type: "POST",
-    url: "upload.php",
-    data: new FormData(this),
-    // if sent
-    success: function () {
-      alert("success");
+    url: 'upload.php',
+    type: 'POST',
+    data: formData,
+    success: function (data) {
+      alert(data);
+      document.location.reload(true);
     },
-    error: function () {
-      alert("failure");
-    }
+    cache: false,
+    contentType: false,
+    processData: false
   });
-  //DECOMMENT THIS:
-  event.preventDefault();
+
 
 });
 
@@ -119,16 +121,16 @@ $("#removeMinute").click(function () {
   var timeSplit = timeString.split(':');
   var hours = parseInt(timeSplit[0]);
   var minutes = parseInt(timeSplit[1]);
-  
+
   //convert to mins
-  startTime = hours*60 + minutes;
+  startTime = hours * 60 + minutes;
   endTime = startTime - mins;
-  
+
   let h = Math.floor(endTime / 60);
   let m = endTime % 60;
   h = h < 10 ? '0' + h : h;
   m = m < 10 ? '0' + m : m;
-  
+
   time = h + ':' + m;
   $("#timepicker2").val(time);
 });
