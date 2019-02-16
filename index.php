@@ -94,7 +94,7 @@ if($count == 0) {
                         
                         <div class="col-xs-6">
                            <label for="radius">Select Radius</label>
-                           <input type="text" class="form-control" name="radius" id="radius" value="50" pattern="([1-9]|[1-8][0-9]|9[0-9]|[1-4][0-9]{2}|500)" title="Distance in meters (1-500)" aria-describedby="radiusHelp">
+                           <input type="text" class="form-control" name="radius" id="radius" value="150" pattern="([1-9]|[1-8][0-9]|9[0-9]|[1-4][0-9]{2}|500)" title="Distance in meters (1-500)" aria-describedby="radiusHelp">
                            <small id="radiusHelp" class="form-text text-muted">Select radius</small>
                         </div>
                         </div>
