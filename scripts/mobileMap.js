@@ -24,7 +24,7 @@ function onLocationError(e) {
 }
 
 var newMarker;
-var radiusInput = 50;
+var radiusInput = 150;
 
 $( "#radius" )
   .keyup(function() {
