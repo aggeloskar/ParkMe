@@ -60,7 +60,7 @@ include('session.php');
         <span class="input-group-btn">
             <button type="button" id="removeMinute" class="btn btn-primary">-</button>
           </span>
-          <input id="manipulateMinutes" name="minutes" class="form-control" value="30" pattern="[1-5]?[0-9]" title="Number 1-59">
+          <input id="manipulateMinutes" name="minutes" class="form-control" value="30" pattern="[1-5]?[0-9]" title="Number 1-59" autocomplete="off">
           <span class="input-group-btn">
             <button type="button" id="addMinute" class="btn btn-primary">+</button>
           </span>

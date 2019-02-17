@@ -61,7 +61,7 @@ if($count == 0) {
                   <div class="card-body">
                      <form role="form" action="runSingleSimulation.php" method="post" id="calculateDemand">
                      <div class="input-group">
-                        <input id="timepicker" name="time" class="form-control timepicker">
+                        <input id="timepicker" name="time" class="form-control timepicker" autocomplete="off">
                         <span class="input-group-btn">
                            <button type="button" onclick="timeSelect()" id="calculateDemand" class="btn btn-primary">Go!</button>
                         </span>
@@ -83,7 +83,7 @@ if($count == 0) {
                      <form role="form" action="findparking.php" method="post" id="findParking">
                         <div class="form-group">
                            <label for="clickedLocation">Select Location</label>
-                           <input type="text" class="form-control" name="clickedLocation" id="clickedLocation" aria-describedby="locationHelp">
+                           <input type="text" class="form-control" name="clickedLocation" id="clickedLocation" aria-describedby="locationHelp" autocomplete="off">
                            <small id="locationHelp" class="form-text text-muted">Click on map or insert coordinates</small>
                         </div>
                         <div class="form-group row">
@@ -94,8 +94,8 @@ if($count == 0) {
                         
                         <div class="col-xs-6">
                            <label for="radius">Select Radius</label>
-                           <input type="text" class="form-control" name="radius" id="radius" value="150" pattern="([1-9]|[1-8][0-9]|9[0-9]|[1-4][0-9]{2}|500)" title="Distance in meters (1-500)" aria-describedby="radiusHelp">
-                           <small id="radiusHelp" class="form-text text-muted">Select radius</small>
+                           <input type="text" class="form-control" name="radius" id="radius" value="150" pattern="([1-3][0-9]{2}|400)" title="Distance in meters (100-400)" aria-describedby="radiusHelp" autocomplete="off">
+                           <small id="radiusHelp" class="form-text text-muted">Distance in meters (100 - 400)</small>
                         </div>
                         </div>
                         <button type="submit" id="form-submit" class="btn btn-primary">Submit</button>
